@@ -40,21 +40,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // create new product
-router.post('/', async (req, res) => {
-  Product.create({
-    product_name: req.body.product_name,
-    price: req.body.price,
-    stock: req.body.stock.stock,
-    tagIds: idk //***************** */
-  })
-    .then((newProduct) => {
-      // Send the newly created row as a JSON object
-      res.json(newProduct);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-
+router.post('/', (req, res) => {
   /* req.body should look like this...
     {
       product_name: "Basketball",
