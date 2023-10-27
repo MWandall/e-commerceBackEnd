@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Product data
   try {
     const TagData = await Tag.findAll( {
-      include: [{ model: Product, through: ProductTag, as: 'Tag_Products' }]  //*do i need a first param? rec.body?
+      include: [{ model: Product, through: ProductTag}]
     });
 
     res.status(200).json(TagData);
@@ -23,8 +23,8 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Product data
   try {
     const TagData = await Tag.findByPk(req.params.id, {
-      // JOIN with Products, using the Tag through table
-      include: [{ model: Product, through: ProductTag, as: 'Tag_Products' }] //*not sure about include here. idk the order of prod/prodTag
+      // JOIN with Products, using the ProdTag through table
+      include: [{ model: Product, through: ProductTag}] 
     });
 
     if (!TagData) {
@@ -50,6 +50,23 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
+  try {
+    const TagData =  await Tag.update({
+      tag_name: req.body.tag_name
+    }, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!TagData) {
+      res.status(404).json({ message: 'No Tag found with this id!' });
+      return;
+    }
+
+    res.status(200).json(TagData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.delete('/:id', async (req, res) => {

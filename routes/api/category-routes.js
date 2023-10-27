@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Products
   try {
     const CategoryData = await Category.findAll( {
-      include: [{ model: Product, through: Category, as: 'Category_Products' }]  //*do i need a first param? rec.body?
+      include: [{ model: Product}] 
     });
 
     res.status(200).json(CategoryData);
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
   try {
     const CategoryData = await Category.findByPk(req.params.id, {
       // JOIN with Products, using the Category through table
-      include: [{ model: Product, through: Category, as: 'Category_Products' }]
+      include: [{ model: Product}]
     });
 
     if (!CategoryData) {
@@ -48,8 +48,25 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   // update a category by its `id` value
+  try {
+    const CategoryData =  await Categoty.update({
+      category_name: req.body.category_name
+    }, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!CategoryData) {
+      res.status(404).json({ message: 'No Category found with this id!' });
+      return;
+    }
+
+    res.status(200).json(CategoryData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.delete('/:id', async (req, res) => {

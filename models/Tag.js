@@ -15,7 +15,7 @@ Tag.init(
     },
     tag_name: {
       type: DataTypes.STRING,
-      allowNull: false  //*README doesn't specify allowNULL so keep that in mind
+
     },
   },
   {
