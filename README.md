@@ -8,7 +8,7 @@
 - Having the back end capabilities this project provides will help automate the GUI on the front end helping both the employees and the shoppers.
 - This project showed me that separation of concerns can help a developer stay organized as well as the balance between the relationships in the table models and the api routes.
 
-## Table of Contents (Optional)
+## Table of Contents
 
 
 
