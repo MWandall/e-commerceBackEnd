@@ -25,7 +25,7 @@ This project requires the node packages express, mysql2, and sequelize as well a
 
 This application is completely back end, therefore, requires an environment such as insomnia to view data. Run the server using "node server.js" and use the port shown in the console log in insomnia: http://localhost:PORT
 
-[Link to video demo](https://drive.google.com/file/d/1Vd-oxIZyMXTr72EmpOio9SJeeEBKFfoV/view)
+[Link to video demo](https://drive.google.com/file/d/1Jmo46EbtmVVWI_YGmUcayLBgoncXWbpu/view)
 ------------
 ![insomnia screenshot](./img/image.png)
 
